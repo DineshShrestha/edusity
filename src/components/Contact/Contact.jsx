@@ -35,12 +35,12 @@ const Contact = () => {
     <div className='contact'>
       <div className="contact-col">
         <h3>Send us a message <img src={msg_icon} alt="" /></h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque id, odio ipsum sunt,
-            aspernatur quae fuga et voluptas nobis nisi cumque corrupti obcaecati quod earum reprehenderit repellat qui laboriosam quasi!</p>
+        <p>We strive to respond to all messages within 24 hours. If your matter is urgent, please do not hesitate to contact us directly at 
+          contact@great.dev . We appreciate your patience and look forward to assisting you.</p>
             <ul>
                 <li><img src={mail_icon} alt="" />Contact@Great.dev</li>
-                <li><img src={phone_icon} alt="" />+156566666</li>
-                <li><img src={location_icon} alt="" />77 Masscuceh, USA</li>
+                <li><img src={phone_icon} alt="" />+47-6566666</li>
+                <li><img src={location_icon} alt="" />3800 Bø, Midt-Telemark</li>
             </ul>
       </div>
       <div className="contact-col">
