@@ -1,33 +1,50 @@
-import React from "react";
+import { useState } from "react";
 import "./Contact.css";
 import msg_icon from "../../assets/msg-icon.png";
 import mail_icon from "../../assets/mail-icon.png";
 import phone_icon from "../../assets/phone-icon.png";
 import location_icon from "../../assets/location-icon.png";
 import white_arrow from "../../assets/white-arrow.png";
+
 const Contact = () => {
-  const [result, setResult] = React.useState("");
+  const [status, setStatus] = useState("");
+  const [isSending, setIsSending] = useState(false);
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    setResult("Sending....");
-    const formData = new FormData(event.target);
 
-    formData.append("access_key", "e17c9ca7-595b-4b29-9836-2c042f4f9ca6");
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+    if (!accessKey) {
+      setStatus("Missing form config, add VITE_WEB3FORMS_ACCESS_KEY in .env");
+      return;
+    }
 
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formData,
-    });
+    setIsSending(true);
+    setStatus("Sending...");
 
-    const data = await response.json();
+    try {
+      const form = event.currentTarget;
+      const formData = new FormData(form);
+      formData.append("access_key", accessKey);
 
-    if (data.success) {
-      setResult("Form Submitted Successfully");
-      event.target.reset();
-    } else {
-      console.log("Error", data);
-      setResult(data.message);
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        setStatus(data?.message || "Submission failed, try again.");
+        return;
+      }
+
+      setStatus("Message sent. We will reply soon.");
+      form.reset();
+    } catch (err) {
+      setStatus("Network error, try again.");
+    } finally {
+      setIsSending(false);
     }
   };
 
@@ -35,57 +52,83 @@ const Contact = () => {
     <div className="contact">
       <div className="contact-col">
         <h3>
-          Send us a message <img src={msg_icon} alt="" />
+          Send us a message <img src={msg_icon} alt="Message icon" />
         </h3>
+
         <p>
-          We strive to respond to all messages within 24 hours. If your matter
-          is urgent, please do not hesitate to contact us directly at
-          contact@great.dev . We appreciate your patience and look forward to
-          assisting you.
+          We reply within 24 hours. For urgent matters, email contact@great.dev.
         </p>
+
         <ul>
           <li>
-            <img src={mail_icon} alt="" />
-            Contact@Great.dev
+            <img src={mail_icon} alt="Email icon" />
+            contact@great.dev
           </li>
           <li>
-            <img src={phone_icon} alt="" />
-            +47-6566666
+            <img src={phone_icon} alt="Phone icon" />
+            +47 65 66 66 66
           </li>
           <li>
-            <img src={location_icon} alt="" />
+            <img src={location_icon} alt="Location icon" />
             3800 Bø, Midt-Telemark
           </li>
         </ul>
       </div>
+
       <div className="contact-col">
-        <form onSubmit={onSubmit}>
-          <label htmlFor="">Your name</label>
+        <form onSubmit={onSubmit} aria-describedby="contact-status">
+          <label htmlFor="contact-name">Your name</label>
           <input
+            id="contact-name"
             type="text"
             name="name"
             placeholder="Enter your name"
+            autoComplete="name"
             required
           />
-          <label htmlFor="">Phone Number</label>
+
+          <label htmlFor="contact-email">Email</label>
           <input
+            id="contact-email"
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            autoComplete="email"
+            required
+          />
+
+          <label htmlFor="contact-phone">Phone number</label>
+          <input
+            id="contact-phone"
             type="tel"
             name="phone"
-            placeholder="Enter your telephone number"
-            required
+            placeholder="Enter your phone number"
+            autoComplete="tel"
           />
-          <label>Write your message here</label>
+
+          <label htmlFor="contact-message">Message</label>
           <textarea
+            id="contact-message"
             name="message"
             rows="6"
             placeholder="Enter your message"
             required
-          ></textarea>
-          <button type="submit" className="btn dark-btn">
-            Submit Now <img src={white_arrow} alt="" />
+          />
+
+          <button
+            type="submit"
+            className="btn dark-btn"
+            disabled={isSending}
+            aria-disabled={isSending}
+          >
+            {isSending ? "Sending..." : "Submit"}
+            <img src={white_arrow} alt="" />
           </button>
         </form>
-        <span>{result}</span>
+
+        <span id="contact-status" role="status" aria-live="polite">
+          {status}
+        </span>
       </div>
     </div>
   );
