@@ -31,7 +31,18 @@ nav ul li {
 .menu-icon {
   display: none;
 }
+.menu-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: none;
+}
 
+.menu-button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
 /****----------Media Query-------------*****/
 
 @media (max-width: 1000px) {
@@ -63,11 +74,18 @@ nav ul li {
     display: block;
     margin: 25px 40px;
   }
+  .menu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
   .menu-icon {
     display: block;
     width: 30px;
-    cursor: pointer;
   }
+
   .hide-mobile-menu {
     right: -200px;
   }
