@@ -1,14 +1,28 @@
-import React from "react";
 import "./Footer.css";
+import { Link } from "react-scroll";
+
 const Footer = () => {
+  const year = new Date().getFullYear();
+
   return (
-    <div className="footer">
-      <p>&copy; 2024 Edusity. All rights reserved.</p>
-      <ul>
-        <li>Terms of Service</li>
-        <li>Privacy Policy</li>
-      </ul>
-    </div>
+    <footer id="footer" className="footer">
+      <p>© {year} Edusity. All rights reserved.</p>
+
+      <nav aria-label="Footer navigation">
+        <ul>
+          <li>
+            <Link to="footer" smooth duration={300}>
+              Terms of service
+            </Link>
+          </li>
+          <li>
+            <Link to="footer" smooth duration={300}>
+              Privacy policy
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </footer>
   );
 };
 

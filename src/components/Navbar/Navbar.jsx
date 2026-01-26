@@ -26,8 +26,10 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`container ${sticky ? "dark-nav" : ""}`}>
-      <img src={logo} alt="Edusity logo" className="logo" />
+    <nav className={`navbar container ${sticky ? "dark-nav" : ""}`}>
+      <Link to="hero" smooth offset={0} duration={500}>
+        <img src={logo} alt="Edusity logo" className="logo" />
+      </Link>
 
       <ul className={mobileMenu ? "" : "hide-mobile-menu"}>
         <li>

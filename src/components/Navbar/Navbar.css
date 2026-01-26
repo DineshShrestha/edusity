@@ -1,6 +1,5 @@
-nav {
+.navbar {
   width: 100%;
-  /* background: #333; */
   color: #fff;
   padding: 4px 0;
   position: fixed;
@@ -16,7 +15,7 @@ nav {
   width: 180px;
 }
 
-nav ul li {
+.navbar ul li {
   display: inline-block;
   list-style: none;
   margin: 5px 20px;
@@ -31,6 +30,7 @@ nav ul li {
 .menu-icon {
   display: none;
 }
+
 .menu-button {
   background: none;
   border: none;
@@ -43,23 +43,25 @@ nav ul li {
   outline: 2px solid #fff;
   outline-offset: 4px;
 }
-/****----------Media Query-------------*****/
+
+/**** Media Query *****/
 
 @media (max-width: 1000px) {
   .logo {
     width: 140px;
   }
 
-  nav ul li {
+  .navbar ul li {
     margin: 10px 15px;
   }
 }
 
 @media (max-width: 840px) {
-  nav {
+  .navbar {
     padding: 15px 0;
   }
-  nav ul {
+
+  .navbar ul {
     position: fixed;
     top: 0;
     right: 0;
@@ -70,10 +72,12 @@ nav ul li {
     transition: 0.5s;
     bottom: 0;
   }
-  nav ul li {
+
+  .navbar ul li {
     display: block;
     margin: 25px 40px;
   }
+
   .menu-button {
     display: inline-flex;
     align-items: center;

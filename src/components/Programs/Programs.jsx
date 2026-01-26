@@ -29,7 +29,7 @@ const PROGRAMS = [
 
 const Programs = () => {
   return (
-    <ul className="programs">
+    <ul className="programs" id="programs">
       {PROGRAMS.map((program) => (
         <li key={program.id} className="program">
           <img

@@ -1,22 +1,31 @@
-import React from "react";
 import "./Hero.css";
-import dark_arrow from "../../assets/dark-arrow.png";
+import darkArrow from "../../assets/dark-arrow.png";
+import { Link } from "react-scroll";
+
 const Hero = () => {
   return (
-    <div className="hero container">
+    <section className="hero container" id="hero">
       <div className="hero-text">
-        <h1>We ensure better education for a better world.</h1>
+        <h1>Better education, better outcomes.</h1>
+
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis,
-          odit animi perspiciatis est quam natus? Quasi possimus vel, temporibus
-          autem quam vero tempora ab, eveniet error, hic eos ipsa numquam!
+          Edusity helps students build practical skills through structured
+          programs, real projects, and mentor feedback.
         </p>
-        <button className="btn">
-          {" "}
-          Explore More <img src={dark_arrow} alt="" />
-        </button>
+
+        <Link
+          className="btn"
+          to="programs"
+          smooth
+          offset={-260}
+          duration={500}
+          aria-label="Explore programs"
+        >
+          Explore programs
+          <img src={darkArrow} alt="" aria-hidden="true" />
+        </Link>
       </div>
-    </div>
+    </section>
   );
 };
 
