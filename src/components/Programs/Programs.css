@@ -46,6 +46,12 @@
   padding-top: 0;
 }
 
+.programs {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 /**** ------Media query---*/
 
 @media (max-width: 650px) {
