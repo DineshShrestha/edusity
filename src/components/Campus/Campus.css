@@ -8,22 +8,31 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 20px;
   margin-bottom: 40px;
+  list-style: none;
+  padding: 0;
+}
+
+.gallery li {
+  width: 23%;
 }
 
 .gallery img {
-  width: 23%;
+  width: 100%;
   border-radius: 10px;
+  display: block;
 }
 
-/***------Media query-*/
+/*** Mobile layout ***/
 
 @media (max-width: 800px) {
   .gallery {
     flex-wrap: wrap;
   }
-  .gallery img {
+
+  .gallery li {
     width: 48%;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
   }
 }
