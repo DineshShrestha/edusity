@@ -1,97 +1,74 @@
-Title
 Edusity, University Landing Page
 
-Description
-Edusity is a responsive university landing page built with React and Vite. The project shows component architecture, accessibility practices, clean UI structure, and production-style patterns.
+Overview  
+Edusity is a responsive university landing page built with React and Vite. You use this project to demonstrate component architecture, accessibility practices, UI structure, and production-style frontend patterns.
 
 Features
 
-Smooth section navigation
-
-Responsive layout
-
-Accessible modal video player
-
-Data-driven sections
-
-Contact form with external API
-
-Keyboard friendly navigation
-
-Mobile menu support
+- Smooth section scrolling navigation
+- Responsive layout for desktop and mobile
+- Accessible video modal with keyboard support
+- Data-driven content sections
+- Contact form integration using Web3Forms API
+- Mobile menu with focus handling
 
 Tech stack
 
-React 18
-
-Vite
-
-CSS Modules structure
-
-ESLint
-
-Prettier
+- React 18
+- Vite
+- CSS
+- ESLint
+- Prettier
 
 Project structure
-src
 
-components, reusable UI blocks
+src  
+ components, reusable UI components  
+ pages, page-level layouts  
+ assets, static images and media
 
-pages, page composition
+Getting started
 
-assets, static files
+1. Clone repository
 
-Setup
+2. Install dependencies  
+   npm install
 
-Clone repo
+3. Setup environment variables  
+   Create .env file in project root  
+   Add:  
+   VITE_WEB3FORMS_ACCESS_KEY=your_key_here
 
-Install dependencies
-npm install
+4. Start development server  
+   npm run dev
 
-Create env file
-Copy .env.example to .env
-Add Web3Forms key
+Available scripts
 
-Start dev server
-npm run dev
+- npm run dev, start local development server
+- npm run build, create production build
+- npm run preview, preview production build
+- npm run lint, run ESLint checks
+- npm run format, format code with Prettier
 
-Environment variables
-VITE_WEB3FORMS_ACCESS_KEY=your_key_here
+Accessibility improvements
 
-Scripts
-npm run dev, start local server
-npm run build, build production bundle
-npm run preview, preview production build
-npm run lint, check code quality
-npm run format, format code
+- Keyboard navigation support
+- ARIA attributes for interactive elements
+- Focus-visible styles for accessibility
+- Semantic HTML structure
 
-Accessibility highlights
+Performance optimizations
 
-Keyboard navigation support
-
-ARIA labels on interactive elements
-
-Focus-visible styles
-
-Semantic HTML
-
-Performance notes
-
-Component-based rendering
-
-Lazy modal behavior
-
-Optimized asset loading
+- Component-based rendering
+- Lightweight modal rendering
+- Optimized asset usage
 
 Roadmap
 
-Add backend integration
+- Add backend integration
+- Add authentication flow
+- Add gallery modal view
+- Add unit tests
 
-Add authentication flow
-
-Add gallery modal view
-
-Add unit tests
-
-Author
+Author  
 Dinesh Shrestha
