@@ -1,105 +1,102 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import "./Testimonials.css";
 import next_icon from "../../assets/next-icon.png";
 import back_icon from "../../assets/back-icon.png";
-import user_1 from "../../assets/user-1.png";
-import user_2 from "../../assets/user-2.png";
-import user_3 from "../../assets/user-3.png";
-import user_4 from "../../assets/user-4.png";
+import user1 from "../../assets/user-1.png";
+import user2 from "../../assets/user-2.png";
+import user3 from "../../assets/user-3.png";
+import user4 from "../../assets/user-4.png";
+
+const TESTIMONIALS = [
+  {
+    id: 1,
+    name: "Mia Thomson",
+    org: "Edusity, USA",
+    avatar: user1,
+    text: "The program helped me build strong fundamentals and confidence. The practical projects made a clear difference in my skills.",
+  },
+  {
+    id: 2,
+    name: "Jose Moreno",
+    org: "Edusity, USA",
+    avatar: user2,
+    text: "I liked the structure and support from mentors. The lessons stayed focused and the feedback helped me improve fast.",
+  },
+  {
+    id: 3,
+    name: "Emilie Carter",
+    org: "Edusity, USA",
+    avatar: user3,
+    text: "The campus environment and tools were excellent. I learned to work in teams and present my work clearly.",
+  },
+  {
+    id: 4,
+    name: "William Jackson",
+    org: "Edusity, USA",
+    avatar: user4,
+    text: "The courses matched what employers ask for. I finished with a portfolio I feel confident showing in interviews.",
+  },
+];
+
 const Testimonials = () => {
-  const slider = useRef();
-  let tx = 0;
+  const sliderRef = useRef(null);
+  const txRef = useRef(0);
+
+  const applyTransform = () => {
+    if (!sliderRef.current) return;
+    sliderRef.current.style.transform = `translateX(${txRef.current}%)`;
+  };
+
   const slideForward = () => {
-    if (tx > -50) {
-      tx -= 25;
+    if (txRef.current > -50) {
+      txRef.current -= 25;
+      applyTransform();
     }
-    slider.current.style.transform = `translateX(${tx}%)`;
   };
+
   const slideBackward = () => {
-    if (tx < 0) {
-      tx += 25;
+    if (txRef.current < 0) {
+      txRef.current += 25;
+      applyTransform();
     }
-    slider.current.style.transform = `translateX(${tx}%)`;
   };
+
   return (
     <div className="testimonials">
-      <img src={next_icon} alt="" className="next-btn" onClick={slideForward} />
-      <img
-        src={back_icon}
-        alt=""
+      <button
+        type="button"
+        className="next-btn"
+        onClick={slideForward}
+        aria-label="Next testimonial"
+      >
+        <img src={next_icon} alt="" aria-hidden="true" />
+      </button>
+
+      <button
+        type="button"
         className="back-btn"
         onClick={slideBackward}
-      />
-      <div className="slider">
-        <ul ref={slider}>
-          <li>
-            <div className="slide">
-              <div className="user-info">
-                <img src={user_1} alt="" />
-                <div>
-                  <h3>Mia Thomson</h3>
-                  <span>Edusity, USA</span>
+        aria-label="Previous testimonial"
+      >
+        <img src={back_icon} alt="" aria-hidden="true" />
+      </button>
+
+      <div className="slider" role="region" aria-label="Testimonials">
+        <ul ref={sliderRef}>
+          {TESTIMONIALS.map((t) => (
+            <li key={t.id}>
+              <article className="slide">
+                <div className="user-info">
+                  <img src={t.avatar} alt={`${t.name} portrait`} />
+                  <div>
+                    <h3>{t.name}</h3>
+                    <span>{t.org}</span>
+                  </div>
                 </div>
-              </div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque
-                molestiae veritatis non tenetur ipsum, obcaecati provident totam
-                perspiciatis nam nostrum delectus. Maiores at possimus ad
-                doloribus, quis minus debitis earum!
-              </p>
-            </div>
-          </li>
-          <li>
-            <div className="slide">
-              <div className="user-info">
-                <img src={user_2} alt="" />
-                <div>
-                  <h3>Jose Moreno</h3>
-                  <span>Edusity, USA</span>
-                </div>
-              </div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque
-                molestiae veritatis non tenetur ipsum, obcaecati provident totam
-                perspiciatis nam nostrum delectus. Maiores at possimus ad
-                doloribus, quis minus debitis earum!
-              </p>
-            </div>
-          </li>
-          <li>
-            <div className="slide">
-              <div className="user-info">
-                <img src={user_3} alt="" />
-                <div>
-                  <h3>Emilie Carter</h3>
-                  <span>Edusity, USA</span>
-                </div>
-              </div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque
-                molestiae veritatis non tenetur ipsum, obcaecati provident totam
-                perspiciatis nam nostrum delectus. Maiores at possimus ad
-                doloribus, quis minus debitis earum!
-              </p>
-            </div>
-          </li>
-          <li>
-            <div className="slide">
-              <div className="user-info">
-                <img src={user_4} alt="" />
-                <div>
-                  <h3>William Jackson</h3>
-                  <span>Edusity, USA</span>
-                </div>
-              </div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque
-                molestiae veritatis non tenetur ipsum, obcaecati provident totam
-                perspiciatis nam nostrum delectus. Maiores at possimus ad
-                doloribus, quis minus debitis earum!
-              </p>
-            </div>
-          </li>
+                <p>{t.text}</p>
+              </article>
+            </li>
+          ))}
         </ul>
       </div>
     </div>

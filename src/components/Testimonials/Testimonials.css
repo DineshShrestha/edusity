@@ -61,6 +61,20 @@
   color: #212ea0;
 }
 
+.next-btn,
+.back-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.next-btn:focus-visible,
+.back-btn:focus-visible {
+  outline: 2px solid #212ea0;
+  outline-offset: 4px;
+}
+
 /***------Media query-*/
 
 @media (max-width: 800px) {
